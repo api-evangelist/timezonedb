@@ -1,0 +1,28 @@
+name: TimezoneDB Rate Limits
+description: Rate limiting policies for the TimezoneDB API.
+url: https://timezonedb.com/api
+
+limits:
+
+  - plan: Free
+    period: second
+    requests: 1
+    description: Free tier users are limited to 1 request per second. Additional requests beyond this limit will be blocked.
+    enforcement: hard block
+    notes: Applies to personal and non-commercial users. Upgrade to premium for unlimited access.
+
+  - plan: Premium
+    period: unlimited
+    requests: unlimited
+    description: Premium subscribers have no rate limits and can make unlimited API queries.
+    enforcement: none
+    notes: Available with Premium Monthly ($5.00/month) or Premium Annual ($50.00/year) subscriptions.
+
+headers:
+  - name: N/A
+    description: TimezoneDB does not publish specific rate limit response headers. Blocked requests receive a FAILED status in the response body.
+
+error_responses:
+  - status: 200
+    body_status: FAILED
+    description: When a rate limit is exceeded or an error occurs, the API returns HTTP 200 with status FAILED and a message field containing the error description.

@@ -1,0 +1,50 @@
+name: TimezoneDB FinOps
+description: Financial operations guidance for managing TimezoneDB API costs.
+url: https://timezonedb.com/premium
+
+cost_model:
+  type: subscription
+  description: TimezoneDB uses a flat-rate subscription model with a free tier and premium tiers. There is no per-request pricing — all costs are fixed monthly or annual subscriptions.
+
+tiers:
+
+  - name: Free
+    monthly_cost: 0.00
+    annual_cost: 0.00
+    currency: USD
+    best_for: Personal projects, prototyping, low-volume non-commercial applications
+    constraints:
+      - 1 request per second maximum
+      - Non-commercial use only
+      - No IP-based lookup
+
+  - name: Premium Monthly
+    monthly_cost: 5.00
+    annual_cost: 60.00
+    currency: USD
+    best_for: Commercial applications, production workloads, high-frequency lookups
+    constraints: []
+
+  - name: Premium Annual
+    monthly_cost: 4.17
+    annual_cost: 50.00
+    currency: USD
+    best_for: Established commercial applications seeking cost savings over monthly billing
+    constraints: []
+
+cost_optimization:
+  - strategy: Cache responses
+    description: Cache timezone lookup results locally since timezone data changes infrequently. This reduces API calls and keeps usage within free tier limits for most applications.
+  - strategy: Use annual subscription
+    description: Annual plan saves $10/year (approximately 17% savings) compared to monthly billing for commercial users.
+  - strategy: Batch lookups
+    description: On the free tier, pace requests to stay within the 1 request/second limit to avoid blocked calls.
+  - strategy: Evaluate free tier first
+    description: The free tier provides full API functionality for non-commercial use. Start free and upgrade only when rate limits become a constraint.
+
+payment:
+  methods:
+    - Credit card
+  billing_cycles:
+    - Monthly
+    - Annual

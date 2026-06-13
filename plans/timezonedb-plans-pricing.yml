@@ -1,0 +1,56 @@
+name: TimezoneDB Plans and Pricing
+description: Pricing plans available for the TimezoneDB API service.
+url: https://timezonedb.com/premium
+plans:
+
+  - name: Free
+    description: Free tier for personal and non-commercial usage with basic API access.
+    url: https://timezonedb.com/register
+    price: 0.00
+    currency: USD
+    unit: month
+    features:
+      - Get time zone by zone name
+      - Get time zone by latitude/longitude
+      - Get time zone by city name
+      - List all supported time zones
+      - Convert between time zones
+      - JSON and XML response formats
+      - 400+ time zones across 240+ countries
+    rate_limits:
+      - 1 request per second
+    limitations:
+      - Personal and non-commercial use only
+      - 1 request per second rate limit
+      - No IP address lookup
+
+  - name: Premium Monthly
+    description: Premium subscription billed monthly for commercial and heavy usage with unlimited queries and no rate limits.
+    url: https://timezonedb.com/premium
+    price: 5.00
+    currency: USD
+    unit: month
+    features:
+      - All Free tier features
+      - Time zone lookup by IP address
+      - City name lookup
+      - Region/state data in responses
+      - Unlimited API queries
+      - No rate limits
+      - Faster and more reliable network
+      - Better lookup performance
+      - Priority support
+    rate_limits: []
+    limitations: []
+
+  - name: Premium Annual
+    description: Premium subscription billed annually at a discounted rate saving $10 compared to monthly billing.
+    url: https://timezonedb.com/premium
+    price: 50.00
+    currency: USD
+    unit: year
+    features:
+      - All Premium Monthly features
+      - 2 months free compared to monthly billing
+    rate_limits: []
+    limitations: []

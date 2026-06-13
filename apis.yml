@@ -1,0 +1,56 @@
+aid: timezonedb
+name: TimezoneDB
+description: TimezoneDB is a REST API providing timezone information for cities and coordinates worldwide. It supports looking up local time, GMT offset, and daylight saving time (DST) status by timezone name, geographic coordinates (latitude/longitude), city name, or IP address. The service also supports converting times between timezones and listing all 400+ supported timezones across 240+ countries. Responses are available in JSON or XML formats.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Timezone
+  - Time
+  - Geographic Coordinates
+  - DST
+  - UTC Offset
+  - Time Conversion
+  - Location
+apis:
+  - aid: timezonedb:timezonedb-api
+    name: TimezoneDB API
+    description: REST API for timezone lookups by zone name, geographic coordinates, city name, or IP address. Supports listing all timezones and converting times between timezones. Returns JSON or XML responses with local time, GMT offset, DST status, country, and abbreviation data.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://timezonedb.com/api
+    baseURL: https://api.timezonedb.com/v2.1
+    tags:
+      - Timezone
+      - Time Conversion
+      - Geographic Coordinates
+      - UTC Offset
+    properties:
+      - type: Documentation
+        url: https://timezonedb.com/api
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/openapi.yml
+    contact:
+      - FN: TimezoneDB Support
+        url: https://timezonedb.com/contact
+common:
+  - type: Website
+    url: https://timezonedb.com/
+  - type: Documentation
+    url: https://timezonedb.com/api
+  - type: Pricing
+    url: https://timezonedb.com/premium
+  - type: Register
+    url: https://timezonedb.com/register
+  - type: X
+    url: https://twitter.com/timezonedb
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/plans/timezonedb-plans-pricing.yml
+  - type: RateLimits
+    url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/rate-limits/timezonedb-rate-limits.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/finops/timezonedb-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
