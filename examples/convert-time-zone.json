@@ -1,0 +1,35 @@
+{
+  "losAngelesToSydney": {
+    "status": "OK",
+    "message": "",
+    "fromZoneName": "America/Los_Angeles",
+    "fromAbbreviation": "PDT",
+    "fromTimestamp": 1464793200,
+    "toZoneName": "Australia/Sydney",
+    "toAbbreviation": "AEST",
+    "toTimestamp": 1464854400,
+    "offset": 61200
+  },
+  "newYorkToLondon": {
+    "status": "OK",
+    "message": "",
+    "fromZoneName": "America/New_York",
+    "fromAbbreviation": "EDT",
+    "fromTimestamp": 1781369587,
+    "toZoneName": "Europe/London",
+    "toAbbreviation": "BST",
+    "toTimestamp": 1781384587,
+    "offset": 18000
+  },
+  "tokyoToChicago": {
+    "status": "OK",
+    "message": "",
+    "fromZoneName": "Asia/Tokyo",
+    "fromAbbreviation": "JST",
+    "fromTimestamp": 1781397187,
+    "toZoneName": "America/Chicago",
+    "toAbbreviation": "CDT",
+    "toTimestamp": 1781365987,
+    "offset": -50400
+  }
+}

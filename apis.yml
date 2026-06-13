@@ -30,7 +30,23 @@ apis:
       - type: Documentation
         url: https://timezonedb.com/api
       - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/openapi.yml
+        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/openapi/openapi.yml
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-schema/list-time-zone-response.json
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-schema/get-time-zone-response.json
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-schema/convert-time-zone-response.json
+      - type: Examples
+        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/examples/list-time-zone.json
+      - type: Examples
+        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/examples/get-time-zone.json
+      - type: Examples
+        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/examples/convert-time-zone.json
+      - type: Vocabulary
+        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/vocabulary/timezonedb-vocabulary.json
+      - type: JSONLDContext
+        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-ld/timezonedb-context.jsonld
     contact:
       - FN: TimezoneDB Support
         url: https://timezonedb.com/contact

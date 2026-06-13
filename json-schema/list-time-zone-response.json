@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-schema/list-time-zone-response.json",
+  "title": "ListTimeZoneResponse",
+  "description": "Response schema for the TimezoneDB list-time-zone endpoint. Returns a list of all supported timezones, optionally filtered by country or zone name pattern.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Query result status.",
+      "enum": ["OK", "FAILED"],
+      "examples": ["OK"]
+    },
+    "message": {
+      "type": "string",
+      "description": "Error message; empty string if successful.",
+      "examples": [""]
+    },
+    "zones": {
+      "type": "array",
+      "description": "Array of timezone entries.",
+      "items": {
+        "$ref": "#/$defs/TimeZoneEntry"
+      }
+    }
+  },
+  "required": ["status", "message"],
+  "$defs": {
+    "TimeZoneEntry": {
+      "type": "object",
+      "description": "A single timezone entry with location and offset information.",
+      "properties": {
+        "countryCode": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code of the timezone.",
+          "minLength": 2,
+          "maxLength": 2,
+          "examples": ["AD", "US", "NZ"]
+        },
+        "countryName": {
+          "type": "string",
+          "description": "Full country name of the timezone.",
+          "examples": ["Andorra", "United States", "New Zealand"]
+        },
+        "zoneName": {
+          "type": "string",
+          "description": "IANA timezone name identifier.",
+          "examples": ["Europe/Andorra", "America/New_York", "Pacific/Auckland"]
+        },
+        "gmtOffset": {
+          "type": "integer",
+          "description": "The UTC offset in seconds. Positive values are east of UTC, negative are west.",
+          "examples": [7200, -18000, 43200]
+        },
+        "dst": {
+          "type": "integer",
+          "description": "Daylight Saving Time flag. 0 = No DST, 1 = DST currently active.",
+          "enum": [0, 1],
+          "examples": [0, 1]
+        },
+        "timestamp": {
+          "type": "integer",
+          "description": "Current local time as a Unix timestamp.",
+          "examples": [1464453737]
+        }
+      }
+    }
+  }
+}

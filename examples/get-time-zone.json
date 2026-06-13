@@ -1,0 +1,61 @@
+{
+  "byZoneName": {
+    "status": "OK",
+    "message": "",
+    "countryCode": "US",
+    "countryName": "United States",
+    "zoneName": "America/Chicago",
+    "abbreviation": "CDT",
+    "gmtOffset": -18000,
+    "dst": "1",
+    "zoneStart": 1710054000,
+    "zoneEnd": 1730613600,
+    "nextAbbreviation": "CST",
+    "timestamp": 1781365987,
+    "formatted": "2026-06-13 15:53:07"
+  },
+  "byPosition": {
+    "status": "OK",
+    "message": "",
+    "countryCode": "US",
+    "countryName": "United States",
+    "zoneName": "America/New_York",
+    "abbreviation": "EDT",
+    "gmtOffset": -14400,
+    "dst": "1",
+    "zoneStart": 1710054000,
+    "zoneEnd": 1730613600,
+    "nextAbbreviation": "EST",
+    "timestamp": 1781369587,
+    "formatted": "2026-06-13 16:53:07"
+  },
+  "byCity": {
+    "status": "OK",
+    "message": "",
+    "countryCode": "GB",
+    "countryName": "United Kingdom",
+    "regionName": "England",
+    "cityName": "London",
+    "zoneName": "Europe/London",
+    "abbreviation": "BST",
+    "gmtOffset": 3600,
+    "dst": "1",
+    "zoneStart": 1711846800,
+    "zoneEnd": 1729994400,
+    "nextAbbreviation": "GMT",
+    "timestamp": 1781384387,
+    "formatted": "2026-06-13 21:53:07"
+  },
+  "byIP": {
+    "status": "OK",
+    "message": "",
+    "countryCode": "JP",
+    "countryName": "Japan",
+    "zoneName": "Asia/Tokyo",
+    "abbreviation": "JST",
+    "gmtOffset": 32400,
+    "dst": "0",
+    "timestamp": 1781397187,
+    "formatted": "2026-06-14 05:53:07"
+  }
+}

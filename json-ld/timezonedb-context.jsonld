@@ -1,0 +1,139 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "tzdb": "https://timezonedb.com/vocabulary#",
+    "api": "https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/vocabulary/timezonedb-vocabulary.json#",
+
+    "TimezoneDB": "tzdb:TimezoneDB",
+    "TimezoneEntry": "tzdb:TimezoneEntry",
+    "TimeZoneResponse": "tzdb:TimeZoneResponse",
+    "ConversionResponse": "tzdb:ConversionResponse",
+
+    "status": {
+      "@id": "tzdb:status",
+      "@type": "xsd:string",
+      "@comment": "Query result status: OK or FAILED"
+    },
+    "message": {
+      "@id": "tzdb:message",
+      "@type": "xsd:string",
+      "@comment": "Error message; empty string if successful"
+    },
+    "zones": {
+      "@id": "tzdb:zones",
+      "@container": "@set",
+      "@comment": "Collection of timezone entries"
+    },
+    "zoneName": {
+      "@id": "tzdb:zoneName",
+      "@type": "xsd:string",
+      "@comment": "IANA timezone database identifier"
+    },
+    "abbreviation": {
+      "@id": "tzdb:abbreviation",
+      "@type": "xsd:string",
+      "@comment": "Short timezone code (e.g. CDT, EST)"
+    },
+    "gmtOffset": {
+      "@id": "tzdb:gmtOffset",
+      "@type": "xsd:integer",
+      "@comment": "UTC offset in seconds"
+    },
+    "dst": {
+      "@id": "tzdb:dst",
+      "@comment": "Daylight Saving Time flag (0=No, 1=Yes)"
+    },
+    "timestamp": {
+      "@id": "tzdb:timestamp",
+      "@type": "xsd:integer",
+      "@comment": "Unix timestamp (seconds since epoch)"
+    },
+    "formatted": {
+      "@id": "tzdb:formatted",
+      "@type": "xsd:string",
+      "@comment": "Human-readable datetime (Y-m-d H:i:s)"
+    },
+    "zoneStart": {
+      "@id": "tzdb:zoneStart",
+      "@type": "xsd:integer",
+      "@comment": "Unix timestamp when current timezone period started"
+    },
+    "zoneEnd": {
+      "@id": "tzdb:zoneEnd",
+      "@type": "xsd:integer",
+      "@comment": "Unix timestamp when current timezone period ends (-1 = no end)"
+    },
+    "nextAbbreviation": {
+      "@id": "tzdb:nextAbbreviation",
+      "@type": "xsd:string",
+      "@comment": "Timezone abbreviation for next period"
+    },
+    "countryCode": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string",
+      "@comment": "ISO 3166-1 alpha-2 country code"
+    },
+    "countryName": {
+      "@id": "tzdb:countryName",
+      "@type": "xsd:string",
+      "@comment": "Full country name"
+    },
+    "regionName": {
+      "@id": "schema:addressRegion",
+      "@type": "xsd:string",
+      "@comment": "Region or state name (premium)"
+    },
+    "cityName": {
+      "@id": "schema:addressLocality",
+      "@type": "xsd:string",
+      "@comment": "City or locality name (premium)"
+    },
+    "fromZoneName": {
+      "@id": "tzdb:fromZoneName",
+      "@type": "xsd:string",
+      "@comment": "Origin IANA timezone name for conversion"
+    },
+    "fromAbbreviation": {
+      "@id": "tzdb:fromAbbreviation",
+      "@type": "xsd:string",
+      "@comment": "Origin timezone abbreviation"
+    },
+    "fromTimestamp": {
+      "@id": "tzdb:fromTimestamp",
+      "@type": "xsd:integer",
+      "@comment": "Unix timestamp of origin time"
+    },
+    "toZoneName": {
+      "@id": "tzdb:toZoneName",
+      "@type": "xsd:string",
+      "@comment": "Destination IANA timezone name"
+    },
+    "toAbbreviation": {
+      "@id": "tzdb:toAbbreviation",
+      "@type": "xsd:string",
+      "@comment": "Destination timezone abbreviation"
+    },
+    "toTimestamp": {
+      "@id": "tzdb:toTimestamp",
+      "@type": "xsd:integer",
+      "@comment": "Unix timestamp of equivalent time in destination timezone"
+    },
+    "offset": {
+      "@id": "tzdb:offset",
+      "@type": "xsd:integer",
+      "@comment": "Difference in seconds between origin and destination timezone"
+    },
+    "totalPage": {
+      "@id": "tzdb:totalPage",
+      "@type": "xsd:integer",
+      "@comment": "Total pages for paginated results"
+    },
+    "currentPage": {
+      "@id": "tzdb:currentPage",
+      "@type": "xsd:integer",
+      "@comment": "Current page number"
+    }
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "title": "TimezoneDB API Vocabulary",
+  "description": "Domain vocabulary for the TimezoneDB API covering timezone data concepts, parameters, and response fields.",
+  "version": "1.0.0",
+  "source": "https://timezonedb.com/api",
+  "terms": [
+    {
+      "term": "zoneName",
+      "label": "Zone Name",
+      "description": "An IANA timezone database identifier that uniquely names a geographic timezone. Examples: America/New_York, Europe/London, Asia/Tokyo.",
+      "type": "string",
+      "relatedTerms": ["abbreviation", "gmtOffset"],
+      "examples": ["America/Chicago", "Europe/Andorra", "Pacific/Auckland"]
+    },
+    {
+      "term": "abbreviation",
+      "label": "Timezone Abbreviation",
+      "description": "A short code representing a timezone, often reflecting the offset and DST status. Examples: CDT (Central Daylight Time), CST (Central Standard Time), EST.",
+      "type": "string",
+      "relatedTerms": ["zoneName", "dst"],
+      "examples": ["CDT", "EST", "BST", "JST", "AEST", "PDT"]
+    },
+    {
+      "term": "gmtOffset",
+      "label": "GMT Offset",
+      "description": "The offset from UTC/GMT in seconds. Positive values indicate timezones east of UTC; negative values indicate timezones west of UTC.",
+      "type": "integer",
+      "unit": "seconds",
+      "relatedTerms": ["dst", "zoneName"],
+      "examples": [3600, -18000, 32400, -25200]
+    },
+    {
+      "term": "dst",
+      "label": "Daylight Saving Time",
+      "description": "A flag indicating whether Daylight Saving Time is currently in effect. 0 means no DST, 1 means DST is active. Returned as integer in list-time-zone and as string in get-time-zone.",
+      "type": "integer or string",
+      "relatedTerms": ["gmtOffset", "zoneStart", "zoneEnd"],
+      "examples": [0, 1, "0", "1"]
+    },
+    {
+      "term": "timestamp",
+      "label": "Unix Timestamp",
+      "description": "A point in time represented as the number of seconds elapsed since the Unix epoch (January 1, 1970, 00:00:00 UTC).",
+      "type": "integer",
+      "unit": "seconds since epoch",
+      "relatedTerms": ["formatted", "gmtOffset"],
+      "examples": [1464453737, 1781365987]
+    },
+    {
+      "term": "formatted",
+      "label": "Formatted Datetime",
+      "description": "A human-readable local datetime string in Y-m-d H:i:s format (year-month-day hours:minutes:seconds).",
+      "type": "string",
+      "pattern": "YYYY-MM-DD HH:mm:ss",
+      "relatedTerms": ["timestamp"],
+      "examples": ["2026-06-13 15:53:07", "2024-03-15 08:30:00"]
+    },
+    {
+      "term": "zoneStart",
+      "label": "Zone Start",
+      "description": "Unix timestamp marking when the current timezone period (including DST or standard time rule) began.",
+      "type": "integer",
+      "unit": "seconds since epoch",
+      "relatedTerms": ["zoneEnd", "dst"],
+      "examples": [1710054000, 1711846800]
+    },
+    {
+      "term": "zoneEnd",
+      "label": "Zone End",
+      "description": "Unix timestamp marking when the current timezone period will end. A value of -1 indicates no scheduled end.",
+      "type": "integer",
+      "unit": "seconds since epoch",
+      "relatedTerms": ["zoneStart", "nextAbbreviation"],
+      "examples": [1730613600, -1]
+    },
+    {
+      "term": "nextAbbreviation",
+      "label": "Next Abbreviation",
+      "description": "The timezone abbreviation that will apply after the current period ends at zoneEnd.",
+      "type": "string",
+      "relatedTerms": ["abbreviation", "zoneEnd"],
+      "examples": ["CST", "GMT", "EDT"]
+    },
+    {
+      "term": "countryCode",
+      "label": "Country Code",
+      "description": "ISO 3166-1 alpha-2 two-letter country code identifying the country associated with a timezone.",
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "relatedTerms": ["countryName"],
+      "examples": ["US", "GB", "JP", "AU", "NZ"]
+    },
+    {
+      "term": "countryName",
+      "label": "Country Name",
+      "description": "Full English name of the country associated with a timezone.",
+      "type": "string",
+      "relatedTerms": ["countryCode"],
+      "examples": ["United States", "United Kingdom", "Japan"]
+    },
+    {
+      "term": "regionName",
+      "label": "Region Name",
+      "description": "The name of the region or state within a country. Available as a premium feature.",
+      "type": "string",
+      "relatedTerms": ["cityName", "countryCode"],
+      "examples": ["Illinois", "England", "New South Wales"]
+    },
+    {
+      "term": "cityName",
+      "label": "City Name",
+      "description": "The name of the city or locality. Available as a premium feature.",
+      "type": "string",
+      "relatedTerms": ["regionName"],
+      "examples": ["Chicago", "London", "Tokyo", "Sydney"]
+    },
+    {
+      "term": "offset",
+      "label": "Timezone Offset",
+      "description": "In the context of time zone conversion, the difference in seconds between the origin timezone and the destination timezone. Positive means destination is ahead.",
+      "type": "integer",
+      "unit": "seconds",
+      "relatedTerms": ["fromTimestamp", "toTimestamp"],
+      "examples": [61200, 18000, -50400]
+    },
+    {
+      "term": "by",
+      "label": "Lookup Method",
+      "description": "The method used to identify a timezone in get-time-zone requests. Options are: zone (by name/abbreviation), position (by lat/lng), city (by city name and country), or ip (by IP address).",
+      "type": "string",
+      "enum": ["zone", "position", "city", "ip"],
+      "examples": ["zone", "position", "city", "ip"]
+    },
+    {
+      "term": "lat",
+      "label": "Latitude",
+      "description": "Geographic latitude coordinate in decimal degrees. Ranges from -90 (South Pole) to 90 (North Pole).",
+      "type": "number",
+      "unit": "decimal degrees",
+      "minimum": -90,
+      "maximum": 90,
+      "relatedTerms": ["lng"],
+      "examples": [40.7128, 51.5074, 35.6762]
+    },
+    {
+      "term": "lng",
+      "label": "Longitude",
+      "description": "Geographic longitude coordinate in decimal degrees. Ranges from -180 to 180, with positive values east of the prime meridian.",
+      "type": "number",
+      "unit": "decimal degrees",
+      "minimum": -180,
+      "maximum": 180,
+      "relatedTerms": ["lat"],
+      "examples": [-74.0060, -0.1278, 139.6503]
+    },
+    {
+      "term": "status",
+      "label": "Response Status",
+      "description": "The result status of an API query. 'OK' indicates success; 'FAILED' indicates an error occurred.",
+      "type": "string",
+      "enum": ["OK", "FAILED"],
+      "relatedTerms": ["message"],
+      "examples": ["OK", "FAILED"]
+    },
+    {
+      "term": "message",
+      "label": "Response Message",
+      "description": "A human-readable message accompanying the status. Empty string on success; contains error description on failure.",
+      "type": "string",
+      "relatedTerms": ["status"],
+      "examples": ["", "Invalid API key.", "Record not found."]
+    }
+  ]
+}
