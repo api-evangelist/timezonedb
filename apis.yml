@@ -1,7 +1,7 @@
 aid: timezonedb
 name: TimezoneDB
 description: TimezoneDB is a REST API providing timezone information for cities and coordinates worldwide. It supports looking up local time, GMT offset, and daylight saving time (DST) status by timezone name, geographic coordinates (latitude/longitude), city name, or IP address. The service also supports converting times between timezones and listing all 400+ supported timezones across 240+ countries. Responses are available in JSON or XML formats.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -18,7 +18,7 @@ apis:
   - aid: timezonedb:timezonedb-api
     name: TimezoneDB API
     description: REST API for timezone lookups by zone name, geographic coordinates, city name, or IP address. Supports listing all timezones and converting times between timezones. Returns JSON or XML responses with local time, GMT offset, DST status, country, and abbreviation data.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://timezonedb.com/api
     baseURL: https://api.timezonedb.com/v2.1
     tags:
