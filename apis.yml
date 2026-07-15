@@ -51,6 +51,8 @@ apis:
       - FN: TimezoneDB Support
         url: https://timezonedb.com/contact
 common:
+  - type: AgenticAccess
+    url: agentic-access/timezonedb-agentic-access.yml
   - type: DomainSecurity
     url: security/timezonedb-domain-security.yml
   - type: Authentication
