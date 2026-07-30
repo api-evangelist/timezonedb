@@ -1,7 +1,20 @@
 aid: timezonedb
 name: TimezoneDB
 description: TimezoneDB is a REST API providing timezone information for cities and coordinates worldwide. It supports looking up local time, GMT offset, and daylight saving time (DST) status by timezone name, geographic coordinates (latitude/longitude), city name, or IP address. The service also supports converting times between timezones and listing all 400+ supported timezones across 240+ countries. Responses are available in JSON or XML formats.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/timezonedb.png
 url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -15,41 +28,78 @@ tags:
   - Time Conversion
   - Location
 apis:
-  - aid: timezonedb:timezonedb-api
-    name: TimezoneDB API
-    description: REST API for timezone lookups by zone name, geographic coordinates, city name, or IP address. Supports listing all timezones and converting times between timezones. Returns JSON or XML responses with local time, GMT offset, DST status, country, and abbreviation data.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://timezonedb.com/api
-    baseURL: https://api.timezonedb.com/v2.1
-    tags:
-      - Timezone
-      - Time Conversion
-      - Geographic Coordinates
-      - UTC Offset
-    properties:
-      - type: Documentation
-        url: https://timezonedb.com/api
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/openapi/openapi.yml
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-schema/list-time-zone-response.json
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-schema/get-time-zone-response.json
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-schema/convert-time-zone-response.json
-      - type: Examples
-        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/examples/list-time-zone.json
-      - type: Examples
-        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/examples/get-time-zone.json
-      - type: Examples
-        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/examples/convert-time-zone.json
-      - type: Vocabulary
-        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/vocabulary/timezonedb-vocabulary.json
-      - type: JSONLDContext
-        url: https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-ld/timezonedb-context.jsonld
-    contact:
-      - FN: TimezoneDB Support
-        url: https://timezonedb.com/contact
+- aid: timezonedb:timezonedb-conversion-api
+  name: TimezoneDB Conversion API
+  description: Operations for converting time between timezones
+  humanURL: https://timezonedb.com/api
+  baseURL: https://api.timezonedb.com/v2.1
+  tags:
+  - Conversion
+  properties:
+  - type: OpenAPI
+    url: openapi/timezonedb-conversion-api-openapi.yml
+  - type: Documentation
+    url: https://timezonedb.com/api
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-schema/list-time-zone-response.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-schema/get-time-zone-response.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-schema/convert-time-zone-response.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/examples/list-time-zone.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/examples/get-time-zone.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/examples/convert-time-zone.json
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/vocabulary/timezonedb-vocabulary.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-ld/timezonedb-context.jsonld
+- aid: timezonedb:timezonedb-timezones-api
+  name: TimezoneDB Timezones API
+  description: Operations for listing and retrieving timezone information
+  humanURL: https://timezonedb.com/api
+  baseURL: https://api.timezonedb.com/v2.1
+  tags:
+  - Timezones
+  properties:
+  - type: OpenAPI
+    url: openapi/timezonedb-timezones-api-openapi.yml
+  - type: Documentation
+    url: https://timezonedb.com/api
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-schema/list-time-zone-response.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-schema/get-time-zone-response.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-schema/convert-time-zone-response.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/examples/list-time-zone.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/examples/get-time-zone.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/examples/convert-time-zone.json
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/vocabulary/timezonedb-vocabulary.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/timezonedb/refs/heads/main/json-ld/timezonedb-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/timezonedb-agentic-access.yml
