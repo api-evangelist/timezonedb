@@ -1,0 +1,16 @@
+{
+  "provider": "timezonedb",
+  "sources": [
+    "timezonedb-conversion-api-openapi.yml",
+    "timezonedb-timezones-api-openapi.yml"
+  ],
+  "outputs": [
+    "timezonedb-conversion-api-openapi.yml",
+    "timezonedb-timezones-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

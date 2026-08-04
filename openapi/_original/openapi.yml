@@ -1,0 +1,568 @@
+openapi: 3.0.3
+info:
+  title: TimezoneDB API
+  description: >
+    TimezoneDB is a REST API providing timezone information for cities and coordinates worldwide.
+    It supports looking up local time, GMT offset, and daylight saving time (DST) status by
+    timezone name, geographic coordinates (latitude/longitude), city name, or IP address.
+    The service also supports converting times between timezones and listing all 400+ supported
+    timezones across 240+ countries. Responses are available in JSON or XML formats.
+  version: '2.1'
+  contact:
+    name: TimezoneDB Support
+    url: https://timezonedb.com/contact
+  termsOfService: https://timezonedb.com/terms-and-conditions
+  license:
+    name: Commercial
+    url: https://timezonedb.com/premium
+externalDocs:
+  description: TimezoneDB API Documentation
+  url: https://timezonedb.com/api
+servers:
+  - url: https://api.timezonedb.com/v2.1
+    description: TimezoneDB API v2.1
+security:
+  - apiKey: []
+tags:
+  - name: Timezones
+    description: Operations for listing and retrieving timezone information
+  - name: Conversion
+    description: Operations for converting time between timezones
+paths:
+  /list-time-zone:
+    get:
+      operationId: listTimeZone
+      summary: List Time Zones
+      description: >
+        List out all available time zones supported by TimezoneDB. Optionally filter
+        by country code or timezone name pattern. Supports field selection to customize
+        the response payload.
+      tags:
+        - Timezones
+      parameters:
+        - name: key
+          in: query
+          required: true
+          description: Your unique API key obtained after registering an account.
+          schema:
+            type: string
+        - name: format
+          in: query
+          required: false
+          description: Response format. Defaults to xml.
+          schema:
+            type: string
+            enum: [xml, json]
+            default: xml
+        - name: callback
+          in: query
+          required: false
+          description: JavaScript JSONP callback function name.
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          description: >
+            Comma-separated list of field names to include in the response.
+            Available fields: countryCode, countryName, zoneName, gmtOffset, dst, timestamp.
+            Defaults to: countryCode, countryName, zoneName, gmtOffset, timestamp.
+          schema:
+            type: string
+            example: countryCode,countryName,zoneName,gmtOffset,timestamp
+        - name: country
+          in: query
+          required: false
+          description: ISO 3166-1 alpha-2 country code to filter results by nation.
+          schema:
+            type: string
+            minLength: 2
+            maxLength: 2
+            example: US
+        - name: zone
+          in: query
+          required: false
+          description: >
+            Timezone name to filter results. Supports asterisk (*) wildcard.
+            Example: "America/*" returns all American timezones.
+          schema:
+            type: string
+            example: America/*
+      responses:
+        '200':
+          description: Successful response with list of timezones.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTimeZoneResponse'
+              examples:
+                allZones:
+                  $ref: '#/components/examples/ListTimeZoneAllZones'
+                filteredByCountry:
+                  $ref: '#/components/examples/ListTimeZoneFilteredByCountry'
+        '400':
+          description: Bad request — missing or invalid parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /get-time-zone:
+    get:
+      operationId: getTimeZone
+      summary: Get Time Zone
+      description: >
+        Retrieve local time, GMT offset, and DST information for a location.
+        Lookup can be performed by timezone name or abbreviation, geographic
+        coordinates (lat/lng), city name (with country), or IP address.
+      tags:
+        - Timezones
+      parameters:
+        - name: key
+          in: query
+          required: true
+          description: Your unique API key obtained after registering an account.
+          schema:
+            type: string
+        - name: format
+          in: query
+          required: false
+          description: Response format. Defaults to xml.
+          schema:
+            type: string
+            enum: [xml, json]
+            default: xml
+        - name: callback
+          in: query
+          required: false
+          description: JavaScript JSONP callback function name.
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          description: Comma-separated list of field names to include in the response.
+          schema:
+            type: string
+        - name: by
+          in: query
+          required: true
+          description: >
+            The lookup method to use. One of:
+            - zone: Look up by timezone name or abbreviation
+            - position: Look up by latitude/longitude coordinates
+            - city: Look up by city name and country code
+            - ip: Look up by IP address
+          schema:
+            type: string
+            enum: [zone, position, city, ip]
+        - name: zone
+          in: query
+          required: false
+          description: >
+            Time zone name or abbreviation. Required when by=zone.
+            Example: "America/Chicago" or "CDT".
+          schema:
+            type: string
+            example: America/Chicago
+        - name: lat
+          in: query
+          required: false
+          description: >
+            Latitude coordinate in decimal degrees. Required when by=position.
+            Range: -90 to 90.
+          schema:
+            type: number
+            format: float
+            minimum: -90
+            maximum: 90
+            example: 40.7128
+        - name: lng
+          in: query
+          required: false
+          description: >
+            Longitude coordinate in decimal degrees. Required when by=position.
+            Range: -180 to 180.
+          schema:
+            type: number
+            format: float
+            minimum: -180
+            maximum: 180
+            example: -74.0060
+        - name: country
+          in: query
+          required: false
+          description: >
+            ISO 3166-1 alpha-2 country code. Required when by=city.
+          schema:
+            type: string
+            minLength: 2
+            maxLength: 2
+            example: US
+        - name: region
+          in: query
+          required: false
+          description: >
+            US region/state code for additional filtering when by=city.
+          schema:
+            type: string
+            example: NY
+        - name: city
+          in: query
+          required: false
+          description: >
+            City name. Required when by=city. Supports wildcard (*) pattern matching.
+          schema:
+            type: string
+            example: New York
+        - name: page
+          in: query
+          required: false
+          description: Page number for paginated results when multiple cities match.
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: time
+          in: query
+          required: false
+          description: >
+            Unix timestamp in UTC to retrieve timezone information for a specific point in time.
+            Defaults to current UTC time.
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful response with timezone information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTimeZoneResponse'
+              examples:
+                byZone:
+                  $ref: '#/components/examples/GetTimeZoneByZone'
+        '400':
+          description: Bad request — missing or invalid parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /convert-time-zone:
+    get:
+      operationId: convertTimeZone
+      summary: Convert Time Zone
+      description: >
+        Convert a Unix timestamp (or current time) from one timezone to another.
+        Provide the source and destination timezones by name or abbreviation,
+        and optionally specify a Unix timestamp to convert. Returns both source
+        and destination timestamps along with timezone metadata.
+      tags:
+        - Conversion
+      parameters:
+        - name: key
+          in: query
+          required: true
+          description: Your unique API key obtained after registering an account.
+          schema:
+            type: string
+        - name: format
+          in: query
+          required: false
+          description: Response format. Defaults to xml.
+          schema:
+            type: string
+            enum: [xml, json]
+            default: xml
+        - name: callback
+          in: query
+          required: false
+          description: JavaScript JSONP callback function name.
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          description: Comma-separated list of field names to include in the response.
+          schema:
+            type: string
+        - name: from
+          in: query
+          required: true
+          description: >
+            A valid timezone name or abbreviation to convert from.
+            Example: "America/Los_Angeles" or "PDT".
+          schema:
+            type: string
+            example: America/Los_Angeles
+        - name: to
+          in: query
+          required: true
+          description: >
+            A valid timezone name or abbreviation to convert to.
+            Example: "Australia/Sydney" or "AEST".
+          schema:
+            type: string
+            example: Australia/Sydney
+        - name: time
+          in: query
+          required: false
+          description: >
+            Unix timestamp of the origin timezone to convert.
+            Defaults to current UTC time.
+          schema:
+            type: integer
+            format: int64
+            example: 1464793200
+      responses:
+        '200':
+          description: Successful response with converted timezone information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConvertTimeZoneResponse'
+              examples:
+                laToSydney:
+                  $ref: '#/components/examples/ConvertTimeZoneLAToSydney'
+        '400':
+          description: Bad request — missing or invalid parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: key
+      description: API key obtained from https://timezonedb.com/register
+  schemas:
+    TimeZoneEntry:
+      type: object
+      description: A single timezone entry with location and offset information.
+      properties:
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code of the timezone.
+          example: AD
+        countryName:
+          type: string
+          description: Full country name of the timezone.
+          example: Andorra
+        zoneName:
+          type: string
+          description: IANA timezone name identifier.
+          example: Europe/Andorra
+        gmtOffset:
+          type: integer
+          description: The UTC offset in seconds.
+          example: 7200
+        dst:
+          type: integer
+          description: Daylight Saving Time flag. 0 = No DST, 1 = DST active.
+          enum: [0, 1]
+          example: 1
+        timestamp:
+          type: integer
+          format: int64
+          description: Current local time as a Unix timestamp.
+          example: 1464453737
+    ListTimeZoneResponse:
+      type: object
+      description: Response from the list-time-zone endpoint.
+      properties:
+        status:
+          type: string
+          description: Query result status.
+          enum: [OK, FAILED]
+          example: OK
+        message:
+          type: string
+          description: Error message; empty string if successful.
+          example: ''
+        zones:
+          type: array
+          description: Array of timezone entries.
+          items:
+            $ref: '#/components/schemas/TimeZoneEntry'
+    GetTimeZoneResponse:
+      type: object
+      description: Response from the get-time-zone endpoint.
+      properties:
+        status:
+          type: string
+          description: Query result status.
+          enum: [OK, FAILED]
+          example: OK
+        message:
+          type: string
+          description: Error message; empty string if successful.
+          example: ''
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code of the timezone.
+          example: US
+        countryName:
+          type: string
+          description: Full country name.
+          example: United States
+        regionName:
+          type: string
+          description: Region or state name (premium feature).
+          example: Illinois
+        cityName:
+          type: string
+          description: City or place name (premium feature).
+          example: Chicago
+        zoneName:
+          type: string
+          description: IANA timezone name identifier.
+          example: America/Chicago
+        abbreviation:
+          type: string
+          description: Timezone abbreviation.
+          example: CDT
+        gmtOffset:
+          type: integer
+          description: UTC offset in seconds.
+          example: -18000
+        dst:
+          type: string
+          description: Daylight Saving Time flag. "0" = No DST, "1" = DST active.
+          enum: ['0', '1']
+          example: '1'
+        zoneStart:
+          type: integer
+          format: int64
+          description: Unix timestamp when the current timezone period started.
+          example: 1710054000
+        zoneEnd:
+          type: integer
+          format: int64
+          description: Unix timestamp when the current timezone period ends.
+          example: 1730613600
+        nextAbbreviation:
+          type: string
+          description: Timezone abbreviation for the next period.
+          example: CST
+        timestamp:
+          type: integer
+          format: int64
+          description: Current local time as a Unix timestamp.
+          example: 1781365987
+        formatted:
+          type: string
+          description: Human-readable local time in Y-m-d H:i:s format.
+          example: '2026-06-13 15:53:07'
+        totalPage:
+          type: integer
+          description: Total number of pages for paginated results.
+          example: 1
+        currentPage:
+          type: integer
+          description: Current page number in paginated results.
+          example: 1
+    ConvertTimeZoneResponse:
+      type: object
+      description: Response from the convert-time-zone endpoint.
+      properties:
+        status:
+          type: string
+          description: Query result status.
+          enum: [OK, FAILED]
+          example: OK
+        message:
+          type: string
+          description: Error message; empty string if successful.
+          example: ''
+        fromZoneName:
+          type: string
+          description: IANA timezone name of the origin timezone.
+          example: America/Los_Angeles
+        fromAbbreviation:
+          type: string
+          description: Timezone abbreviation of the origin timezone.
+          example: PDT
+        fromTimestamp:
+          type: integer
+          format: int64
+          description: Unix timestamp of the origin time.
+          example: 1464793200
+        toZoneName:
+          type: string
+          description: IANA timezone name of the destination timezone.
+          example: Australia/Sydney
+        toAbbreviation:
+          type: string
+          description: Timezone abbreviation of the destination timezone.
+          example: AEST
+        toTimestamp:
+          type: integer
+          format: int64
+          description: Unix timestamp of the equivalent time in the destination timezone.
+          example: 1464854400
+        offset:
+          type: integer
+          description: Difference in seconds between origin and destination timezone.
+          example: 61200
+    ErrorResponse:
+      type: object
+      description: Error response returned when a query fails.
+      properties:
+        status:
+          type: string
+          description: Always "FAILED" for error responses.
+          enum: [FAILED]
+          example: FAILED
+        message:
+          type: string
+          description: Human-readable error message describing the failure.
+          example: Invalid API key.
+  examples:
+    ListTimeZoneAllZones:
+      summary: List all timezones
+      value:
+        status: OK
+        message: ''
+        zones:
+          - countryCode: AD
+            countryName: Andorra
+            zoneName: Europe/Andorra
+            gmtOffset: 7200
+            timestamp: 1464453737
+    ListTimeZoneFilteredByCountry:
+      summary: List timezones filtered by country (New Zealand)
+      value:
+        status: OK
+        message: ''
+        zones:
+          - countryCode: NZ
+            countryName: New Zealand
+            zoneName: Pacific/Auckland
+            gmtOffset: 43200
+            timestamp: 1464537416
+    GetTimeZoneByZone:
+      summary: Get timezone info by zone name
+      value:
+        status: OK
+        message: ''
+        countryCode: US
+        countryName: United States
+        zoneName: America/Chicago
+        abbreviation: CDT
+        gmtOffset: -18000
+        dst: '1'
+        timestamp: 1781365987
+        formatted: '2026-06-13 15:53:07'
+    ConvertTimeZoneLAToSydney:
+      summary: Convert from Los Angeles to Sydney
+      value:
+        status: OK
+        message: ''
+        fromZoneName: America/Los_Angeles
+        fromAbbreviation: PDT
+        fromTimestamp: 1464793200
+        toZoneName: Australia/Sydney
+        toAbbreviation: AEST
+        toTimestamp: 1464854400
+        offset: 61200
