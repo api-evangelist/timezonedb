@@ -1,0 +1,263 @@
+{
+  "item": [
+    {
+      "id": "1601ccb7-d520-469b-ad08-06b5af38ae79",
+      "name": "Conversion",
+      "description": {
+        "content": "Operations for converting time between timezones",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8c324e94-cd61-4a8c-9a13-36ece4e4509e",
+          "name": "Convert Time Zone",
+          "request": {
+            "name": "Convert Time Zone",
+            "description": {
+              "content": "Convert a Unix timestamp (or current time) from one timezone to another. Provide the source and destination timezones by name or abbreviation, and optionally specify a Unix timestamp to convert. Returns both source and destination timestamps along with timezone metadata.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "convert-time-zone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your unique API key obtained after registering an account."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "xml",
+                  "description": "Response format. Defaults to xml."
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "JavaScript JSONP callback function name."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of field names to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "(Required) A valid timezone name or abbreviation to convert from. Example: \"America/Los_Angeles\" or \"PDT\".\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "(Required) A valid timezone name or abbreviation to convert to. Example: \"Australia/Sydney\" or \"AEST\".\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "time",
+                  "value": "<long>",
+                  "description": "Unix timestamp of the origin timezone to convert. Defaults to current UTC time.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5b30718-7205-4b74-9762-301e2bac4a5a",
+              "name": "Successful response with converted timezone information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert-time-zone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "America/Los_Angeles"
+                    },
+                    {
+                      "key": "to",
+                      "value": "Australia/Sydney"
+                    },
+                    {
+                      "key": "time",
+                      "value": "1464793200"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"OK\",\n  \"message\": \"\",\n  \"fromZoneName\": \"America/Los_Angeles\",\n  \"fromAbbreviation\": \"PDT\",\n  \"fromTimestamp\": 1464793200,\n  \"toZoneName\": \"Australia/Sydney\",\n  \"toAbbreviation\": \"AEST\",\n  \"toTimestamp\": 1464854400,\n  \"offset\": 61200\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5156b68e-13dc-400a-ba73-e483bd169688",
+              "name": "Bad request — missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert-time-zone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "America/Los_Angeles"
+                    },
+                    {
+                      "key": "to",
+                      "value": "Australia/Sydney"
+                    },
+                    {
+                      "key": "time",
+                      "value": "1464793200"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"FAILED\",\n  \"message\": \"Invalid API key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.timezonedb.com/v2.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c23f0d8d-4cce-46e9-b86e-6554657b1a4c",
+    "name": "TimezoneDB Conversion API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TimezoneDB is a REST API providing timezone information for cities and coordinates worldwide. It supports looking up local time, GMT offset, and daylight saving time (DST) status by timezone name, geographic coordinates (latitude/longitude), city name, or IP address. The service also supports converting times between timezones and listing all 400+ supported timezones across 240+ countries. Responses are available in JSON or XML formats.\n\n\nContact Support:\n Name: TimezoneDB Support",
+      "type": "text/plain"
+    }
+  }
+}

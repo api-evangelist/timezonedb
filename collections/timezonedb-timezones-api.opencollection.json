@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TimezoneDB Conversion Timezones API",
+    "version": "2.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Timezones",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Time Zones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.timezonedb.com/v2.1/list-time-zone",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your unique API key obtained after registering an account."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to xml."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JavaScript JSONP callback function name."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of field names to include in the response. Available fields: countryCode, countryName, zoneName, gmtOffset, dst, timestamp. Defaults to: countryCode, countryName, zoneName, gmtOffset, timestamp.\n"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "ISO 3166-1 alpha-2 country code to filter results by nation."
+              },
+              {
+                "name": "zone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name to filter results. Supports asterisk (*) wildcard. Example: \"America/*\" returns all American timezones.\n"
+              }
+            ]
+          },
+          "docs": "List out all available time zones supported by TimezoneDB. Optionally filter by country code or timezone name pattern. Supports field selection to customize the response payload.\n"
+        },
+        {
+          "info": {
+            "name": "Get Time Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.timezonedb.com/v2.1/get-time-zone",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your unique API key obtained after registering an account."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to xml."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JavaScript JSONP callback function name."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of field names to include in the response."
+              },
+              {
+                "name": "by",
+                "value": "",
+                "type": "query",
+                "description": "The lookup method to use. One of: - zone: Look up by timezone name or abbreviation - position: Look up by latitude/longitude coordinates - city: Look up by city name and country code - ip: Look up by IP address\n"
+              },
+              {
+                "name": "zone",
+                "value": "",
+                "type": "query",
+                "description": "Time zone name or abbreviation. Required when by=zone. Example: \"America/Chicago\" or \"CDT\".\n"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude coordinate in decimal degrees. Required when by=position. Range: -90 to 90.\n"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude coordinate in decimal degrees. Required when by=position. Range: -180 to 180.\n"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "ISO 3166-1 alpha-2 country code. Required when by=city.\n"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "US region/state code for additional filtering when by=city.\n"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query",
+                "description": "City name. Required when by=city. Supports wildcard (*) pattern matching.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results when multiple cities match."
+              },
+              {
+                "name": "time",
+                "value": "",
+                "type": "query",
+                "description": "Unix timestamp in UTC to retrieve timezone information for a specific point in time. Defaults to current UTC time.\n"
+              }
+            ]
+          },
+          "docs": "Retrieve local time, GMT offset, and DST information for a location. Lookup can be performed by timezone name or abbreviation, geographic coordinates (lat/lng), city name (with country), or IP address.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

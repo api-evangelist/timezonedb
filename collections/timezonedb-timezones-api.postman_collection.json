@@ -1,0 +1,547 @@
+{
+  "item": [
+    {
+      "id": "8e0e6745-4d98-4941-9cb3-52449f541da8",
+      "name": "Timezones",
+      "description": {
+        "content": "Operations for listing and retrieving timezone information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b3d45cf-cff2-4215-9193-a5c16ec6fc4f",
+          "name": "List Time Zones",
+          "request": {
+            "name": "List Time Zones",
+            "description": {
+              "content": "List out all available time zones supported by TimezoneDB. Optionally filter by country code or timezone name pattern. Supports field selection to customize the response payload.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-time-zone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your unique API key obtained after registering an account."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "xml",
+                  "description": "Response format. Defaults to xml."
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "JavaScript JSONP callback function name."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of field names to include in the response. Available fields: countryCode, countryName, zoneName, gmtOffset, dst, timestamp. Defaults to: countryCode, countryName, zoneName, gmtOffset, timestamp.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "ISO 3166-1 alpha-2 country code to filter results by nation."
+                },
+                {
+                  "disabled": false,
+                  "key": "zone",
+                  "value": "<string>",
+                  "description": "Timezone name to filter results. Supports asterisk (*) wildcard. Example: \"America/*\" returns all American timezones.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fc62d93c-e594-4b49-8f67-a7b970c23b98",
+              "name": "Successful response with list of timezones.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-time-zone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "countryCode,countryName,zoneName,gmtOffset,timestamp"
+                    },
+                    {
+                      "key": "country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "zone",
+                      "value": "America/*"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"OK\",\n  \"message\": \"\",\n  \"zones\": [\n    {\n      \"countryCode\": \"AD\",\n      \"countryName\": \"Andorra\",\n      \"zoneName\": \"Europe/Andorra\",\n      \"gmtOffset\": 7200,\n      \"timestamp\": 1464453737\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9f69f3d-0935-4c96-b3e2-0b205b46b64f",
+              "name": "Bad request — missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-time-zone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "countryCode,countryName,zoneName,gmtOffset,timestamp"
+                    },
+                    {
+                      "key": "country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "zone",
+                      "value": "America/*"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"FAILED\",\n  \"message\": \"Invalid API key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe697ce3-e01c-428c-9793-e18ccf1b6f1f",
+          "name": "Get Time Zone",
+          "request": {
+            "name": "Get Time Zone",
+            "description": {
+              "content": "Retrieve local time, GMT offset, and DST information for a location. Lookup can be performed by timezone name or abbreviation, geographic coordinates (lat/lng), city name (with country), or IP address.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "get-time-zone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your unique API key obtained after registering an account."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "xml",
+                  "description": "Response format. Defaults to xml."
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "JavaScript JSONP callback function name."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of field names to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "by",
+                  "value": "<string>",
+                  "description": "(Required) The lookup method to use. One of: - zone: Look up by timezone name or abbreviation - position: Look up by latitude/longitude coordinates - city: Look up by city name and country code - ip: Look up by IP address\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "zone",
+                  "value": "<string>",
+                  "description": "Time zone name or abbreviation. Required when by=zone. Example: \"America/Chicago\" or \"CDT\".\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<float>",
+                  "description": "Latitude coordinate in decimal degrees. Required when by=position. Range: -90 to 90.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "lng",
+                  "value": "<float>",
+                  "description": "Longitude coordinate in decimal degrees. Required when by=position. Range: -180 to 180.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "ISO 3166-1 alpha-2 country code. Required when by=city.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "US region/state code for additional filtering when by=city.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "City name. Required when by=city. Supports wildcard (*) pattern matching.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results when multiple cities match."
+                },
+                {
+                  "disabled": false,
+                  "key": "time",
+                  "value": "<long>",
+                  "description": "Unix timestamp in UTC to retrieve timezone information for a specific point in time. Defaults to current UTC time.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2ef25d5-8607-4501-b306-eeb981d20fb1",
+              "name": "Successful response with timezone information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-time-zone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zone",
+                      "value": "America/Chicago"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "40.7128"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "-74.006"
+                    },
+                    {
+                      "key": "country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "region",
+                      "value": "NY"
+                    },
+                    {
+                      "key": "city",
+                      "value": "New York"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"OK\",\n  \"message\": \"\",\n  \"countryCode\": \"US\",\n  \"countryName\": \"United States\",\n  \"zoneName\": \"America/Chicago\",\n  \"abbreviation\": \"CDT\",\n  \"gmtOffset\": -18000,\n  \"dst\": \"1\",\n  \"timestamp\": 1781365987,\n  \"formatted\": \"2026-06-13 15:53:07\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e75c5b6e-11a8-433f-a60e-5c5121c60c0e",
+              "name": "Bad request — missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-time-zone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zone",
+                      "value": "America/Chicago"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "40.7128"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "-74.006"
+                    },
+                    {
+                      "key": "country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "region",
+                      "value": "NY"
+                    },
+                    {
+                      "key": "city",
+                      "value": "New York"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"FAILED\",\n  \"message\": \"Invalid API key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.timezonedb.com/v2.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d2380e6a-5014-4ad3-b9d1-a8e129d23c7e",
+    "name": "TimezoneDB Conversion Timezones API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TimezoneDB is a REST API providing timezone information for cities and coordinates worldwide. It supports looking up local time, GMT offset, and daylight saving time (DST) status by timezone name, geographic coordinates (latitude/longitude), city name, or IP address. The service also supports converting times between timezones and listing all 400+ supported timezones across 240+ countries. Responses are available in JSON or XML formats.\n\n\nContact Support:\n Name: TimezoneDB Support",
+      "type": "text/plain"
+    }
+  }
+}

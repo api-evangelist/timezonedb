@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TimezoneDB Conversion API",
+    "version": "2.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conversion",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Convert Time Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.timezonedb.com/v2.1/convert-time-zone",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your unique API key obtained after registering an account."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Defaults to xml."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JavaScript JSONP callback function name."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of field names to include in the response."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "A valid timezone name or abbreviation to convert from. Example: \"America/Los_Angeles\" or \"PDT\".\n"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "A valid timezone name or abbreviation to convert to. Example: \"Australia/Sydney\" or \"AEST\".\n"
+              },
+              {
+                "name": "time",
+                "value": "",
+                "type": "query",
+                "description": "Unix timestamp of the origin timezone to convert. Defaults to current UTC time.\n"
+              }
+            ]
+          },
+          "docs": "Convert a Unix timestamp (or current time) from one timezone to another. Provide the source and destination timezones by name or abbreviation, and optionally specify a Unix timestamp to convert. Returns both source and destination timestamps along with timezone metadata.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
