@@ -83,6 +83,8 @@ apis:
   humanURL: https://timezonedb.com/api
   baseURL: https://api.timezonedb.com/v2.1
   tags:
+  - Timezone
+  tags_raw:
   - Timezones
   properties:
   - type: OpenAPI
