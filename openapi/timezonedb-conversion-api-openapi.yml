@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: TimezoneDB Conversion API
-  description: 'TimezoneDB is a REST API providing timezone information for cities and coordinates worldwide. It supports looking up local time, GMT offset, and daylight saving time (DST) status by timezone name, geographic coordinates (latitude/longitude), city name, or IP address. The service also supports converting times between timezones and listing all 400+ supported timezones across 240+ countries. Responses are available in JSON or XML formats.
-
-    '
+  description: TimezoneDB is a REST API providing timezone information for cities and coordinates worldwide. It supports looking up local time, GMT offset, and daylight saving time (DST) status by timezone name, geographic coordinates (latitude/longitude), city name, or IP address. The service also supports converting times between timezones and listing all 400+ supported timezones across 240+ countries. Responses are available in JSON or XML formats.
   version: '2.1'
   contact:
     name: TimezoneDB Support
@@ -25,9 +23,7 @@ paths:
     get:
       operationId: convertTimeZone
       summary: Convert Time Zone
-      description: 'Convert a Unix timestamp (or current time) from one timezone to another. Provide the source and destination timezones by name or abbreviation, and optionally specify a Unix timestamp to convert. Returns both source and destination timestamps along with timezone metadata.
-
-        '
+      description: Convert a Unix timestamp (or current time) from one timezone to another. Provide the source and destination timezones by name or abbreviation, and optionally specify a Unix timestamp to convert. Returns both source and destination timestamps along with timezone metadata.
       tags:
       - Conversion
       parameters:
@@ -104,6 +100,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  examples:
+    ConvertTimeZoneLAToSydney:
+      summary: Convert from Los Angeles to Sydney
+      value:
+        status: OK
+        message: ''
+        fromZoneName: America/Los_Angeles
+        fromAbbreviation: PDT
+        fromTimestamp: 1464793200
+        toZoneName: Australia/Sydney
+        toAbbreviation: AEST
+        toTimestamp: 1464854400
+        offset: 61200
   schemas:
     ErrorResponse:
       type: object
@@ -164,19 +173,6 @@ components:
           type: integer
           description: Difference in seconds between origin and destination timezone.
           example: 61200
-  examples:
-    ConvertTimeZoneLAToSydney:
-      summary: Convert from Los Angeles to Sydney
-      value:
-        status: OK
-        message: ''
-        fromZoneName: America/Los_Angeles
-        fromAbbreviation: PDT
-        fromTimestamp: 1464793200
-        toZoneName: Australia/Sydney
-        toAbbreviation: AEST
-        toTimestamp: 1464854400
-        offset: 61200
   securitySchemes:
     apiKey:
       type: apiKey

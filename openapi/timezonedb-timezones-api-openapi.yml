@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TimezoneDB Conversion Timezones API
-  description: 'TimezoneDB is a REST API providing timezone information for cities and coordinates worldwide. It supports looking up local time, GMT offset, and daylight saving time (DST) status by timezone name, geographic coordinates (latitude/longitude), city name, or IP address. The service also supports converting times between timezones and listing all 400+ supported timezones across 240+ countries. Responses are available in JSON or XML formats.
-
-    '
+  title: TimezoneDB Timezones API
+  description: TimezoneDB is a REST API providing timezone information for cities and coordinates worldwide. It supports looking up local time, GMT offset, and daylight saving time (DST) status by timezone name, geographic coordinates (latitude/longitude), city name, or IP address. The service also supports converting times between timezones and listing all 400+ supported timezones across 240+ countries. Responses are available in JSON or XML formats.
   version: '2.1'
   contact:
     name: TimezoneDB Support
@@ -25,9 +23,7 @@ paths:
     get:
       operationId: listTimeZone
       summary: List Time Zones
-      description: 'List out all available time zones supported by TimezoneDB. Optionally filter by country code or timezone name pattern. Supports field selection to customize the response payload.
-
-        '
+      description: List out all available time zones supported by TimezoneDB. Optionally filter by country code or timezone name pattern. Supports field selection to customize the response payload.
       tags:
       - Timezones
       parameters:
@@ -102,9 +98,7 @@ paths:
     get:
       operationId: getTimeZone
       summary: Get Time Zone
-      description: 'Retrieve local time, GMT offset, and DST information for a location. Lookup can be performed by timezone name or abbreviation, geographic coordinates (lat/lng), city name (with country), or IP address.
-
-        '
+      description: Retrieve local time, GMT offset, and DST information for a location. Lookup can be performed by timezone name or abbreviation, geographic coordinates (lat/lng), city name (with country), or IP address.
       tags:
       - Timezones
       parameters:
@@ -246,6 +240,17 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   examples:
+    ListTimeZoneAllZones:
+      summary: List all timezones
+      value:
+        status: OK
+        message: ''
+        zones:
+        - countryCode: AD
+          countryName: Andorra
+          zoneName: Europe/Andorra
+          gmtOffset: 7200
+          timestamp: 1464453737
     ListTimeZoneFilteredByCountry:
       summary: List timezones filtered by country (New Zealand)
       value:
@@ -270,17 +275,6 @@ components:
         dst: '1'
         timestamp: 1781365987
         formatted: '2026-06-13 15:53:07'
-    ListTimeZoneAllZones:
-      summary: List all timezones
-      value:
-        status: OK
-        message: ''
-        zones:
-        - countryCode: AD
-          countryName: Andorra
-          zoneName: Europe/Andorra
-          gmtOffset: 7200
-          timestamp: 1464453737
   schemas:
     TimeZoneEntry:
       type: object
@@ -334,20 +328,6 @@ components:
           description: Array of timezone entries.
           items:
             $ref: '#/components/schemas/TimeZoneEntry'
-    ErrorResponse:
-      type: object
-      description: Error response returned when a query fails.
-      properties:
-        status:
-          type: string
-          description: Always "FAILED" for error responses.
-          enum:
-          - FAILED
-          example: FAILED
-        message:
-          type: string
-          description: Human-readable error message describing the failure.
-          example: Invalid API key.
     GetTimeZoneResponse:
       type: object
       description: Response from the get-time-zone endpoint.
@@ -429,6 +409,20 @@ components:
           type: integer
           description: Current page number in paginated results.
           example: 1
+    ErrorResponse:
+      type: object
+      description: Error response returned when a query fails.
+      properties:
+        status:
+          type: string
+          description: Always "FAILED" for error responses.
+          enum:
+          - FAILED
+          example: FAILED
+        message:
+          type: string
+          description: Human-readable error message describing the failure.
+          example: Invalid API key.
   securitySchemes:
     apiKey:
       type: apiKey
