@@ -100,19 +100,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  examples:
-    ConvertTimeZoneLAToSydney:
-      summary: Convert from Los Angeles to Sydney
-      value:
-        status: OK
-        message: ''
-        fromZoneName: America/Los_Angeles
-        fromAbbreviation: PDT
-        fromTimestamp: 1464793200
-        toZoneName: Australia/Sydney
-        toAbbreviation: AEST
-        toTimestamp: 1464854400
-        offset: 61200
   schemas:
     ErrorResponse:
       type: object
@@ -173,6 +160,19 @@ components:
           type: integer
           description: Difference in seconds between origin and destination timezone.
           example: 61200
+  examples:
+    ConvertTimeZoneLAToSydney:
+      summary: Convert from Los Angeles to Sydney
+      value:
+        status: OK
+        message: ''
+        fromZoneName: America/Los_Angeles
+        fromAbbreviation: PDT
+        fromTimestamp: 1464793200
+        toZoneName: Australia/Sydney
+        toAbbreviation: AEST
+        toTimestamp: 1464854400
+        offset: 61200
   securitySchemes:
     apiKey:
       type: apiKey
